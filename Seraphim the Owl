@@ -1,0 +1,41 @@
+import java.util.*;
+public class SeraphimTheOwl {
+public static void main(String[]args)
+{
+	Scanner sc = new Scanner(System.in);
+	int T = sc.nextInt();
+	for(int i = 0;i<T;i++)
+	{
+		int N = sc.nextInt();
+		int M = sc.nextInt();
+		long arr1[] = new long[N];
+		long arr2[] = new long[N];
+		for(int j = 0;j<N;j++)
+		{
+			long num = sc.nextLong();
+			arr1[j]=num;
+		}
+		for(int j = 0;j<N;j++)
+		{
+			long num = sc.nextLong();
+			arr2[j]=num;
+		}
+		long sum = 0;
+		long minSum = 0;
+		for(int j = N-1;j>(M-1);j--)
+		{
+			sum+=(Math.min(arr1[j], arr2[j]));
+		}
+		
+		minSum = sum+arr1[(M-1)];
+		for(int j = (M-1);j>0;j--)
+		{
+			
+			long newSum = sum+((Math.min(arr1[j], arr2[j])));
+			minSum = Math.min(minSum,newSum+(arr1[j-1]));
+			sum+=((Math.min(arr1[j], arr2[j])));
+		}
+		System.out.println(minSum);
+}
+}
+}
