@@ -1,0 +1,33 @@
+import java.util.*;
+public class CountTheValuesOfK {
+public static void main(String[]args)
+{
+	Scanner sc = new Scanner(System.in);
+	int T = sc.nextInt();
+	for(int i = 0;i<T;i++)
+	{
+		int a = sc.nextInt();
+		int b = sc.nextInt();
+		int l = sc.nextInt();
+		int pow = 0;
+		HashSet<Integer> finalKVals = new HashSet<Integer>();
+		
+		while(Math.pow(a, pow)<=l) 
+		{
+			int pow2 = 0;
+			while(Math.pow(b, pow2)*Math.pow(a, pow)<=l)
+			{
+				if(l%(Math.pow(b, pow2)*Math.pow(a, pow))==0)
+				{
+					finalKVals.add((int) (l/(Math.pow(b, pow2)*Math.pow(a, pow))));
+				}
+				
+				pow2++;
+			}
+			pow++;
+		}
+		
+		System.out.println(finalKVals.size());
+	}
+}
+}
