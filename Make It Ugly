@@ -1,0 +1,77 @@
+import java.util.*;
+public class MakeItUgly {
+public static void main(String[]args)
+{
+	Scanner sc = new Scanner(System.in);
+	int T = sc.nextInt();
+	for(int i = 0;i<T;i++)
+	{
+		int N = sc.nextInt();
+		int arr[] = new int[N];
+		for(int j = 0;j<N;j++)
+		{
+			int num = sc.nextInt();
+			arr[j]=num;
+		}
+		
+		if(arr.length==1)
+		{
+			System.out.println("-1");
+		}
+		else
+		{
+			int currentCount = 1;
+			int minCount = Integer.MAX_VALUE;
+			boolean previousBreak = false;
+			int prevIndex = 0;
+			//Our ends our good
+			for(int j = 1;j<arr.length-1;j++)
+			{
+				
+				if(previousBreak)
+				{
+					if(arr[j]!=arr[prevIndex-1])
+					{
+						previousBreak = true;
+						minCount=Math.min(currentCount, minCount);
+						currentCount = 0;
+						prevIndex = j;
+					}
+					else
+					{
+						currentCount++;
+					}
+				}
+				else if(arr[j]!=arr[j-1])
+				{
+					minCount=Math.min(currentCount, minCount);
+					previousBreak = true;
+					prevIndex = j;
+					currentCount = 0;
+				}
+				else
+				{
+					currentCount++;
+				}
+			}
+			if(previousBreak)
+			{
+				if(arr[arr.length-1]==arr[prevIndex-1])
+				{
+					currentCount++;
+				}
+				minCount=Math.min(currentCount, minCount);
+			}
+			
+			if(minCount==0||minCount==Integer.MAX_VALUE)
+			{
+				System.out.println("-1");
+			}
+			else
+			{
+				System.out.println(minCount);
+			}
+		}
+	}
+}
+}
