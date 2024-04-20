@@ -1,0 +1,35 @@
+import java.util.*;
+public class NeneGame {
+public static void main(String[]args)
+{
+	Scanner sc = new Scanner(System.in);
+	int T = sc.nextInt();
+	for(int i = 0;i<T;i++)
+	{
+		int N = sc.nextInt();
+		int M = sc.nextInt();
+		int arr[] = new int[N];
+		int arr2[] = new int[M];
+		for(int j = 0;j<arr.length;j++)
+		{
+			int num = sc.nextInt();
+			arr[j]=num;
+		}
+		
+		String s = "";
+		for(int j = 0;j<arr2.length;j++)
+		{
+			int num = sc.nextInt();
+			if(num>=arr[0])
+			{
+				s = s+((arr[0])-1)+" ";
+			}
+			else
+			{
+				s = s+(num)+" ";
+			}
+		}
+		System.out.println(s.trim());
+	}
+}
+}
