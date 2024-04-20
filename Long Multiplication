@@ -1,0 +1,91 @@
+import java.util.*;
+public class LongMultiplication {
+public static void main(String[]args)
+{
+	Scanner sc = new Scanner(System.in);
+	int T = sc.nextInt();
+	sc.nextLine();
+	for(int i = 0;i<T;i++)
+	{
+ 
+		String numOneStr = sc.nextLine();
+		String numTwoStr = sc.nextLine();
+		if(numOneStr.equals(numTwoStr))
+		{
+			System.out.println(numOneStr);
+			System.out.println(numTwoStr);
+			continue;
+		}
+		int charInd = 0;
+		String num1 = "";
+		String num2 = "";
+		
+		while(numOneStr.charAt(charInd)==numTwoStr.charAt(charInd))
+		{
+			num1=num1+numOneStr.charAt(charInd);
+			num2=num2+numTwoStr.charAt(charInd);
+			charInd++;
+		}
+		
+		boolean one = false;
+		boolean two = false;
+		if(Integer.parseInt(numOneStr.charAt(charInd)+"")>Integer.parseInt(numTwoStr.charAt(charInd)+""))
+		{
+			one = true;
+		}
+		else
+		{
+			two = true;
+		}
+		num1=num1+numOneStr.charAt(charInd);
+		num2=num2+numTwoStr.charAt(charInd);
+		charInd++;
+		
+		
+		for(int j = charInd;j<numOneStr.length();j++)
+		{
+			if(one)
+			{
+				//We change B
+				if(Integer.parseInt(numOneStr.charAt(j)+"")>Integer.parseInt(numTwoStr.charAt(j)+""))
+				{
+					num1=num1+(numTwoStr.charAt(j));
+					num2=num2+(numOneStr.charAt(j));
+				}
+				else
+				{
+					num1=num1+(numOneStr.charAt(j));
+					num2=num2+(numTwoStr.charAt(j));
+				}
+				
+			}
+			else if(two)
+			{
+				//We change A
+				if(Integer.parseInt(numOneStr.charAt(j)+"")<Integer.parseInt(numTwoStr.charAt(j)+""))
+				{
+					num1=num1+(numTwoStr.charAt(j));
+					num2=num2+(numOneStr.charAt(j));
+				}
+				else
+				{
+					num1=num1+(numOneStr.charAt(j));
+					num2=num2+(numTwoStr.charAt(j));
+				}
+			}
+		}
+		if(one)
+		{
+			System.out.println(num1);
+			System.out.println(num2);
+		}
+		else
+		{
+			System.out.println(num2);
+			System.out.println(num1);
+		}
+		
+		
+	}
+}
+}
