@@ -1,0 +1,19 @@
+import java.util.*;
+public class FireWorks {
+public static void main(String[]args)
+{
+	Scanner sc = new Scanner(System.in);
+	int T = sc.nextInt();
+	for(int i = 0;i<T;i++)
+	{
+		long a = sc.nextLong();
+		long b = sc.nextLong();
+		long c = sc.nextLong();
+		long min = Math.min(a, b);
+		long timeA = a+c;
+		long timeB = b+c;
+		long answer = timeA/a+timeB/b;
+		System.out.println(answer);
+	}
+}
+}
