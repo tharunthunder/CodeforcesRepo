@@ -1,0 +1,62 @@
+import java.util.*;
+public class InhabitantsOfTheDeepSea {
+public static void main(String[]args)
+{
+	Scanner sc = new Scanner(System.in);
+	int T = sc.nextInt();
+	for(int i = 0;i<T;i++)
+	{
+		int N = sc.nextInt();
+		long M = sc.nextLong();
+		long arr[] = new long[N];
+		for(int j = 0;j<N;j++)
+		{
+			long num = sc.nextLong();
+			arr[j]=num;
+		}
+		boolean visited[] = new boolean[N];
+		long count = 0;
+		long halfCount1 = M/2;
+		long halfCount2 = M/2;
+		if(M%2==1)
+		{
+			halfCount1++;
+		}
+ 
+		for(int j = 0;j<arr.length;j++)
+		{
+			
+			if(halfCount1>=arr[j])
+			{
+				halfCount1-=(arr[j]);
+				count++;
+				visited[j]=true;
+			}
+			else
+			{
+				
+				arr[j]=arr[j]-halfCount1;
+				halfCount1 = 0;
+				break;
+			}
+			
+		}
+		
+		for(int j = arr.length-1;j>=0;j--)
+		{
+			if(halfCount2>=arr[j]&&visited[j]==false)
+			{
+				halfCount2-=(arr[j]);
+				count++;
+			}
+			else
+			{
+				break;
+			}
+		}
+		
+ 
+		System.out.println(count);
+	}
+}
+}
