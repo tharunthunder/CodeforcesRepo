@@ -1,0 +1,62 @@
+import java.util.*;
+public class LeftAndRightHouses {
+public static void main(String[]args)
+{
+	Scanner sc = new Scanner(System.in);
+	int T = sc.nextInt();
+	for(int i = 0;i<T;i++)
+	{
+		int N = sc.nextInt();
+		sc.nextLine();
+		String s = sc.nextLine();
+		int prefix1[] = new int[N];
+		int prefix0[] = new int[N];
+		for(int j = 0;j<s.length();j++)
+		{
+			if(s.charAt(j)=='1')
+			{
+				prefix1[j]++;
+			}
+			if(s.charAt(j)=='0')
+			{
+				prefix0[j]++;
+			}
+		}
+		
+		for(int j = 0;j<prefix1.length-1;j++)
+		{
+			prefix1[j+1]=prefix1[j]+prefix1[j+1];
+			prefix0[j+1]=prefix0[j]+prefix0[j+1];
+		}
+		
+		int minIndex = Integer.MAX_VALUE;
+		double minDif = Double.MAX_VALUE;
+		for(int j = 0;j<prefix1.length;j++)
+		{
+			int rightSection = prefix1[prefix1.length-1]-prefix1[j];
+			int leftSection = prefix0[j];
+			if(leftSection>=((j+1)/2.0))
+			{
+				if(rightSection>=((prefix1.length-j-1)/2.0))
+				{
+					if(minDif>Math.abs((N/2.0-(j+1))))
+					{
+						minDif = (N/2.0-(j+1));
+						minIndex = (j+1);
+					}
+					
+				}
+			}
+		}
+		if(minIndex==Integer.MAX_VALUE)
+		{
+			minIndex = 0;
+		}
+		if((prefix1[prefix1.length-1]>=(prefix1.length)/2.0)&&(minIndex==Integer.MAX_VALUE||minIndex==prefix1.length))
+		{
+			minIndex = 0;
+		}
+		System.out.println(minIndex);
+	}
+}
+}
