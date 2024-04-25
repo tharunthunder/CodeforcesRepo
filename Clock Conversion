@@ -1,0 +1,39 @@
+import java.util.*;
+public class ClockConversion {
+public static void main(String[]args)
+{
+	Scanner sc = new Scanner(System.in);
+	int T = sc.nextInt();
+	sc.nextLine();
+	for(int i = 0;i<T;i++)
+	{
+		String s = sc.nextLine();
+		String arr[] = s.split(":");
+		int currentHour = Integer.parseInt(arr[0]);
+		if(currentHour>12)
+		{
+			if(currentHour>=(12+10))
+			{
+				System.out.println((currentHour-12)+":"+arr[1]+" PM");
+			}
+			else
+			{
+				System.out.println("0"+(currentHour-12)+":"+arr[1]+" PM");
+			}
+		}
+		else if(currentHour==12)
+		{
+			System.out.println(12+":"+arr[1]+" PM");
+		}
+		else if(currentHour==0)
+		{
+			System.out.println(12+":"+arr[1]+" AM");
+		}
+		else if(currentHour<12)
+		{
+			System.out.println(s+" AM");
+		}
+		
+	}
+}
+}
