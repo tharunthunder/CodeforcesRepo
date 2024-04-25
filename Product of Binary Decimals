@@ -1,0 +1,87 @@
+import java.util.*;
+public class ProductOfBinaryDecimals {
+public static void main(String[]args)
+{
+	Scanner sc = new Scanner(System.in);
+	int N = sc.nextInt();
+	ArrayList<Integer> nums = new ArrayList<Integer>();
+	preComp(1,nums);
+	for(int i = 0;i<N;i++)
+	{
+		int num = sc.nextInt();
+		boolean change = false;
+		boolean found = false;
+		int ten = 100;
+		if(num==1)
+		{
+			found = true;
+			change = true;
+		}
+		for(int j = 1;j<nums.size();j++)
+		{
+			if(num==nums.get(j))
+			{
+				found = true;
+				change = true;
+				break;
+			}
+		}
+		while(!change)
+		{
+			for(int j = nums.size()-1;j>=1;j--)
+			{
+				if(num==nums.get(j))
+				{
+					found = true;
+					break;
+				}
+				if(num%nums.get(j)==0)
+				{
+					
+					change = true;
+					
+					
+					num = num/nums.get(j);
+					
+				}
+			}
+			if(change)
+			{
+				change = false;
+			}
+			else
+			{
+				break;
+			}
+		}
+		if(found)
+		{
+			System.out.println("YES");
+		}
+		else
+		{
+			System.out.println("NO");
+		}
+		
+	}
+	
+}
+public static void preComp(int startNum,ArrayList<Integer> nums)
+{
+	//System.out.println(startNum);
+	if(startNum<(1000000))
+	{
+		for(int i = 0;i<nums.size();i++)
+		{
+			if(nums.get(i)==startNum)
+			{
+				return;
+			}
+		}
+		nums.add(startNum);
+		String s = startNum+"";
+		preComp(Integer.parseInt(startNum+"1"),nums);
+		preComp(Integer.parseInt(startNum+"0"),nums);
+	}
+}
+}
