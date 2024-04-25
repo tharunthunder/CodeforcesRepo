@@ -1,0 +1,54 @@
+import java.util.*;
+public class _0_1_2_Tree {
+public static void main(String[]args)
+{
+	Scanner sc = new Scanner(System.in);
+	int N = sc.nextInt();
+	for(int i = 0;i<N;i++)
+	{
+		int a = sc.nextInt();
+		int b = sc.nextInt();
+		int c = sc.nextInt();
+		int maxHeight = 0;
+		if(c!=a+1) 
+		{
+			System.out.println("-1");
+		}
+		else
+		{
+			Queue<Integer> currentHeights = new LinkedList<Integer>();
+			for(int j = 0;j<c;j++)
+			{
+				currentHeights.add(0);
+			}
+			
+			if(a==0)
+			{
+				maxHeight = Math.max(b, 0); 
+			}
+			while(a>0)
+			{
+				int currentHeight = currentHeights.poll();
+				if(b>0)
+				{
+					b--;
+					currentHeight++;
+					maxHeight = Math.max(maxHeight, currentHeight); 
+					currentHeights.add(currentHeight);
+				}
+				else
+				{
+					currentHeight = Math.max(currentHeight,currentHeights.poll());
+					currentHeight++;
+					maxHeight = Math.max(maxHeight, currentHeight); 
+					currentHeights.add(currentHeight);
+					
+					a--;
+				}
+			}
+			System.out.println(maxHeight);
+		}
+		
+	}
+}
+}
